@@ -1,0 +1,35 @@
+﻿using System;
+using Tasks.API1.Enums;
+using Tasks.API1.Models;
+
+namespace Tasks.API1
+{
+	public class TaskDataStore
+	{
+		public List<TaskDto> Tasks { get; set; }
+		public static TaskDataStore Current { get; } = new TaskDataStore();
+
+		public TaskDataStore()
+		{
+			Tasks = new List<TaskDto> {
+				new TaskDto()
+				{
+					Id = Guid.Parse("2b1df221-6f44-4a40-8ab5-fbcb5fe95e70"),
+					Description = "Task 1 Description",
+					Importance = ImportanceEnum.Medium,
+					TimeTaken = new DateTime(2023, 06, 20),
+                    IsCompleted = false
+                },
+                new TaskDto()
+                {
+                    Id = Guid.Parse("d536de88-80f9-4483-a167-ea3815750c7b"),
+                    Description = "Task 2 Description",
+                    Importance = ImportanceEnum.High,
+                    TimeTaken = new DateTime(2023, 04, 25),
+                    IsCompleted = false
+                }
+            };
+		}
+	}
+}
+

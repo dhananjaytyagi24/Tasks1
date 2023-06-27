@@ -4,8 +4,10 @@ using Tasks.API1.Enums;
 
 namespace Tasks.API1.Models
 {
-	public class Task
+	public class TaskDto
 	{
+		public Guid Id { get; set; }
+
 		[Required]
 		public string Description { get; set; } = string.Empty;
 
