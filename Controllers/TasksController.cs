@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using Tasks.API1.Models;
 
 namespace Tasks.API1.Controllers
 {
@@ -8,9 +9,22 @@ namespace Tasks.API1.Controllers
 	public class TasksController : ControllerBase
 	{
 		[HttpGet]
-		public JsonResult GetTasks()
+		public ActionResult<IEnumerable<TaskDto>> GetTasks()
 		{
-			return new JsonResult(TaskDataStore.Current.Tasks);
+			return Ok(TaskDataStore.Current.Tasks);
+		}
+
+		[HttpGet("{taskId}")]
+		public ActionResult<TaskDto> GetTask([FromRoute] Guid taskId)
+		{
+			var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
+
+			if (task == null)
+			{
+				return NotFound();
+			}
+
+            return Ok(task);
 		}
 
 		//[HttpPost]
