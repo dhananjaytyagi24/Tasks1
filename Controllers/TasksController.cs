@@ -27,11 +27,23 @@ namespace Tasks.API1.Controllers
             return Ok(task);
 		}
 
-		//[HttpPost]
-		//public async Task<IActionResult> CreateTask()
-		//{
+		[HttpPost]
+		public IActionResult CreateTask(CreateTaskDto createTaskDto)
+		{
+			var newTask = new TaskDto();
+			newTask.Id = Guid.NewGuid();
+			newTask.CreatedAt = DateTime.Now;
+			newTask.IsCompleted = false;
+			newTask.Description = createTaskDto.Description;
+			newTask.Importance = createTaskDto.Importance;
+			newTask.TimeTaken = newTask.TimeTaken;
 
-		//}
+			TaskDataStore.Current.Tasks.Add(newTask);
+
+			return NoContent();
+			//return CreatedAtRoute($"api/v1/tasks/{newTask.Id}", newTask);
+			
+		}
 	}
 }
 
