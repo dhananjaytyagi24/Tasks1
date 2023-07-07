@@ -24,7 +24,7 @@ namespace Tasks.API1.Controllers
 				return NotFound();
 			}
 
-            return Ok(task);
+			return Ok(task);
 		}
 
 		[HttpPost]
@@ -42,7 +42,26 @@ namespace Tasks.API1.Controllers
 
 			return NoContent();
 			//return CreatedAtRoute($"api/v1/tasks/{newTask.Id}", newTask);
-			
+
+		}
+
+		[HttpPut("{taskId}")]
+		public IActionResult UpdateTask([FromRoute]Guid taskId, UpdateTaskDto updateTaskDto)
+		{
+			var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
+
+			if (task == null)
+			{
+				return NotFound();
+			}
+
+			task.Description = updateTaskDto.Description;
+			task.Importance = updateTaskDto.Importance;
+			task.TimeTaken = updateTaskDto.TimeTaken;
+			task.TargetDate = updateTaskDto.TargetDate;
+			task.IsCompleted = updateTaskDto.IsCompleted;
+
+			return NoContent();
 		}
 	}
 }
