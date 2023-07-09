@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Tasks.API1.Models;
 
 namespace Tasks.API1.Controllers
@@ -14,14 +13,14 @@ namespace Tasks.API1.Controllers
 			return Ok(TaskDataStore.Current.Tasks);
 		}
 
-		[HttpGet("{taskId}")]
+		[HttpGet("{taskId}", Name ="GetTask")]
 		public ActionResult<TaskDto> GetTask([FromRoute] Guid taskId)
 		{
 			var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
 
 			if (task == null)
 			{
-				return NotFound();
+				return NotFound($"Task with Id: {taskId} could not be found");
 			}
 
 			return Ok(task);
@@ -30,18 +29,21 @@ namespace Tasks.API1.Controllers
 		[HttpPost]
 		public IActionResult CreateTask(CreateTaskDto createTaskDto)
 		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest("Invalid request");
+			}
 			var newTask = new TaskDto();
 			newTask.Id = Guid.NewGuid();
 			newTask.CreatedAt = DateTime.Now;
 			newTask.IsCompleted = false;
 			newTask.Description = createTaskDto.Description;
 			newTask.Importance = createTaskDto.Importance;
-			newTask.TimeTaken = newTask.TimeTaken;
+			newTask.DaysTaken = newTask.DaysTaken;
 
 			TaskDataStore.Current.Tasks.Add(newTask);
 
-			return NoContent();
-			//return CreatedAtRoute($"api/v1/tasks/{newTask.Id}", newTask);
+			return CreatedAtRoute("GetTask", new { taskId = newTask.Id }, newTask);
 
 		}
 
@@ -52,17 +54,31 @@ namespace Tasks.API1.Controllers
 
 			if (task == null)
 			{
-				return NotFound();
+				return NotFound($"Task with Id: {taskId} could not be found");
 			}
 
 			task.Description = updateTaskDto.Description;
 			task.Importance = updateTaskDto.Importance;
-			task.TimeTaken = updateTaskDto.TimeTaken;
-			task.TargetDate = updateTaskDto.TargetDate;
+			task.DaysTaken = updateTaskDto.DaysTaken;
 			task.IsCompleted = updateTaskDto.IsCompleted;
 
 			return NoContent();
 		}
+
+		[HttpDelete("{taskId}")]
+		public IActionResult DeleteTask([FromRoute]Guid taskId)
+		{
+            var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
+
+            if (task == null)
+            {
+                return NotFound($"Task with Id: {taskId} could not be found");
+            }
+
+			TaskDataStore.Current.Tasks.Remove(task);
+
+			return NoContent();
+        }
 	}
 }
 

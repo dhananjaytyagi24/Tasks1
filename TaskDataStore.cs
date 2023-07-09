@@ -17,7 +17,7 @@ namespace Tasks.API1
 					Id = Guid.Parse("2b1df221-6f44-4a40-8ab5-fbcb5fe95e70"),
 					Description = "Task 1 Description",
 					Importance = ImportanceEnum.Medium,
-					TimeTaken = new DateTime(2023, 06, 20),
+					DaysTaken = 1,
                     IsCompleted = false
                 },
                 new TaskDto()
@@ -25,7 +25,7 @@ namespace Tasks.API1
                     Id = Guid.Parse("d536de88-80f9-4483-a167-ea3815750c7b"),
                     Description = "Task 2 Description",
                     Importance = ImportanceEnum.High,
-                    TimeTaken = new DateTime(2023, 04, 25),
+                    DaysTaken = 2,
                     IsCompleted = false
                 }
             };

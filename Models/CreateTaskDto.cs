@@ -13,9 +13,7 @@ namespace Tasks.API1.Models
         public ImportanceEnum Importance { get; set; }
 
         [Required]
-        public DateTime TimeTaken { get; set; }
-
-        public DateTime TargetDate { get; set; }
+        public int DaysTaken { get; set; }
     }
 }
 
