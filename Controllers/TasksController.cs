@@ -65,6 +65,12 @@ namespace Tasks.API1.Controllers
 			return NoContent();
 		}
 
+		//[HttpPatch("{taskId}")]
+		//public IActionResult PatchTask([FromRoute] Guid taskId, )
+		//{
+
+		//}
+
 		[HttpDelete("{taskId}")]
 		public IActionResult DeleteTask([FromRoute]Guid taskId)
 		{
