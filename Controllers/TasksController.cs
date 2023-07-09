@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using Tasks.API1.Models;
 
 namespace Tasks.API1.Controllers
@@ -51,7 +52,6 @@ namespace Tasks.API1.Controllers
 		public IActionResult UpdateTask([FromRoute]Guid taskId, UpdateTaskDto updateTaskDto)
 		{
 			var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
-
 			if (task == null)
 			{
 				return NotFound($"Task with Id: {taskId} could not be found");
@@ -65,11 +65,31 @@ namespace Tasks.API1.Controllers
 			return NoContent();
 		}
 
-		//[HttpPatch("{taskId}")]
-		//public IActionResult PatchTask([FromRoute] Guid taskId, )
-		//{
+		[HttpPatch("{taskId}")]
+		public IActionResult PatchTask([FromRoute] Guid taskId, JsonPatchDocument<UpdateTaskDto> jsonPatchDocument)
+		{
+            var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
+            if (task == null)
+            {
+                return NotFound($"Task with Id: {taskId} could not be found");
+            }
 
-		//}
+			UpdateTaskDto updateTaskDto = new UpdateTaskDto()
+			{
+				Description = task.Description,
+				Importance = task.Importance,
+				DaysTaken = task.DaysTaken,
+				IsCompleted = task.IsCompleted
+			};
+
+			jsonPatchDocument.ApplyTo(updateTaskDto);
+			task.Description = updateTaskDto.Description;
+			task.Importance = updateTaskDto.Importance;
+			task.DaysTaken = updateTaskDto.DaysTaken;
+			task.IsCompleted = updateTaskDto.IsCompleted;
+
+            return NoContent();
+        }
 
 		[HttpDelete("{taskId}")]
 		public IActionResult DeleteTask([FromRoute]Guid taskId)
