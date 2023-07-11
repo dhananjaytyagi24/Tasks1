@@ -8,6 +8,13 @@ namespace Tasks.API1.Controllers
 	[Route("api/v1/tasks")]
 	public class TasksController : ControllerBase
 	{
+		private readonly ILogger<TasksController> _logger;
+
+		public TasksController(ILogger<TasksController> logger)
+		{
+			_logger = logger;
+		}
+
 		[HttpGet]
 		public ActionResult<IEnumerable<TaskDto>> GetTasks()
 		{
@@ -17,14 +24,24 @@ namespace Tasks.API1.Controllers
 		[HttpGet("{taskId}", Name ="GetTask")]
 		public ActionResult<TaskDto> GetTask([FromRoute] Guid taskId)
 		{
-			var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
-
-			if (task == null)
+			try
 			{
-				return NotFound($"Task with Id: {taskId} could not be found");
-			}
+				throw new Exception("new exception");
+                var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
 
-			return Ok(task);
+                if (task == null)
+                {
+                    _logger.LogInformation($"Task with Id: {taskId} could not be found");
+                    return NotFound($"Task with Id: {taskId} could not be found");
+                }
+
+                return Ok(task);
+            }
+			catch (Exception ex)
+			{
+				_logger.LogCritical(ex, $"Exception thrown while getting task with Id: {taskId}");
+				return StatusCode(500);
+			}
 		}
 
 		[HttpPost]
@@ -32,7 +49,7 @@ namespace Tasks.API1.Controllers
 		{
 			if (!ModelState.IsValid)
 			{
-				return BadRequest("Invalid request");
+				return BadRequest("Invalid create request");
 			}
 			var newTask = new TaskDto();
 			newTask.Id = Guid.NewGuid();
@@ -82,7 +99,8 @@ namespace Tasks.API1.Controllers
 				IsCompleted = task.IsCompleted
 			};
 
-			jsonPatchDocument.ApplyTo(updateTaskDto);
+			// Sending ModelState as a parameter to check for any errors after applying the json patch doc 
+			jsonPatchDocument.ApplyTo(updateTaskDto, ModelState);
 			task.Description = updateTaskDto.Description;
 			task.Importance = updateTaskDto.Importance;
 			task.DaysTaken = updateTaskDto.DaysTaken;

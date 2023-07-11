@@ -1,0 +1,85 @@
+2023-07-10 19:59:33.076 -07:00 [INF] Now listening on: https://localhost:7050
+2023-07-10 19:59:33.105 -07:00 [INF] Now listening on: http://localhost:5269
+2023-07-10 19:59:33.108 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-07-10 19:59:33.109 -07:00 [INF] Hosting environment: Development
+2023-07-10 19:59:33.109 -07:00 [INF] Content root path: /Users/tyagi/dev/Projects/Tasks.API1/Tasks.API1/
+2023-07-10 19:59:34.164 -07:00 [INF] Request starting HTTP/1.1 GET https://localhost:7050/swagger/index.html - -
+2023-07-10 19:59:34.390 -07:00 [INF] Request finished HTTP/1.1 GET https://localhost:7050/swagger/index.html - - - 200 - text/html;charset=utf-8 228.5667ms
+2023-07-10 19:59:34.564 -07:00 [INF] Request starting HTTP/1.1 GET https://localhost:7050/swagger/v1/swagger.json - -
+2023-07-10 19:59:34.678 -07:00 [INF] Request finished HTTP/1.1 GET https://localhost:7050/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 113.6984ms
+2023-07-10 19:59:49.820 -07:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2023-07-10 19:59:49.906 -07:00 [DBG] Hosting starting
+2023-07-10 19:59:50.014 -07:00 [DBG] Using development certificate: CN=localhost (Thumbprint: 82FEFA2011E62A12CC8A8206BD2BAC400682D85B)
+2023-07-10 19:59:50.104 -07:00 [INF] Now listening on: https://localhost:7050
+2023-07-10 19:59:50.104 -07:00 [INF] Now listening on: http://localhost:5269
+2023-07-10 19:59:50.104 -07:00 [DBG] Loaded hosting startup assembly Tasks.API1
+2023-07-10 19:59:50.105 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-07-10 19:59:50.105 -07:00 [INF] Hosting environment: Development
+2023-07-10 19:59:50.105 -07:00 [INF] Content root path: /Users/tyagi/dev/Projects/Tasks.API1/Tasks.API1/
+2023-07-10 19:59:50.105 -07:00 [DBG] Hosting started
+2023-07-10 19:59:50.110 -07:00 [DBG] Connection id "0HMS1NBI8GJC5" accepted.
+2023-07-10 19:59:50.111 -07:00 [DBG] Connection id "0HMS1NBI8GJC5" started.
+2023-07-10 19:59:51.069 -07:00 [DBG] Connection id "0HMS1NBI8GJC5" received FIN.
+2023-07-10 19:59:51.079 -07:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException:  Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.<FillHandshakeBufferAsync>g__InternalFillHandshakeBufferAsync|189_0[TIOAdapter](TIOAdapter adap, ValueTask`1 task, Int32 minSize)
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[] reAuthenticationData, Boolean isApm)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2023-07-10 19:59:51.129 -07:00 [DBG] Connection id "0HMS1NBI8GJC6" accepted.
+2023-07-10 19:59:51.129 -07:00 [DBG] Connection id "0HMS1NBI8GJC5" stopped.
+2023-07-10 19:59:51.144 -07:00 [DBG] Connection id "0HMS1NBI8GJC6" started.
+2023-07-10 19:59:51.148 -07:00 [DBG] Connection id "0HMS1NBI8GJC5" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-07-10 19:59:51.183 -07:00 [DBG] Connection 0HMS1NBI8GJC6 established using the following protocol: "Tls12"
+2023-07-10 19:59:51.208 -07:00 [INF] Request starting HTTP/1.1 GET https://localhost:7050/swagger/index.html - -
+2023-07-10 19:59:51.209 -07:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2023-07-10 19:59:51.335 -07:00 [DBG] Connection id "0HMS1NBI8GJC6" completed keep alive response.
+2023-07-10 19:59:51.336 -07:00 [INF] Request finished HTTP/1.1 GET https://localhost:7050/swagger/index.html - - - 200 - text/html;charset=utf-8 130.8100ms
+2023-07-10 19:59:51.514 -07:00 [INF] Request starting HTTP/1.1 GET https://localhost:7050/swagger/v1/swagger.json - -
+2023-07-10 19:59:51.635 -07:00 [DBG] Connection id "0HMS1NBI8GJC6" completed keep alive response.
+2023-07-10 19:59:51.635 -07:00 [INF] Request finished HTTP/1.1 GET https://localhost:7050/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 121.2012ms
+2023-07-10 20:00:08.312 -07:00 [DBG] Connection id "0HMS1NBI8GJC7" received FIN.
+2023-07-10 20:00:08.312 -07:00 [DBG] Connection id "0HMS1NBI8GJC7" accepted.
+2023-07-10 20:00:08.313 -07:00 [DBG] Connection id "0HMS1NBI8GJC8" accepted.
+2023-07-10 20:00:08.313 -07:00 [DBG] Connection id "0HMS1NBI8GJC8" started.
+2023-07-10 20:00:08.316 -07:00 [DBG] Connection id "0HMS1NBI8GJC7" started.
+2023-07-10 20:00:08.317 -07:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException:  Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[] reAuthenticationData, Boolean isApm)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2023-07-10 20:00:08.322 -07:00 [DBG] Connection id "0HMS1NBI8GJC7" stopped.
+2023-07-10 20:00:08.327 -07:00 [DBG] Connection id "0HMS1NBI8GJC7" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-07-10 20:00:08.349 -07:00 [DBG] Connection 0HMS1NBI8GJC8 established using the following protocol: "Tls12"
+2023-07-10 20:00:08.350 -07:00 [INF] Request starting HTTP/1.1 GET https://localhost:7050/api/v1/tasks/2b1df221-6f44-4a40-8ab5-fbcb5fe95e71 - -
+2023-07-10 20:00:08.355 -07:00 [DBG] The request path  does not match the path filter
+2023-07-10 20:00:08.369 -07:00 [DBG] 1 candidate(s) found for the request path '/api/v1/tasks/2b1df221-6f44-4a40-8ab5-fbcb5fe95e71'
+2023-07-10 20:00:08.373 -07:00 [DBG] Endpoint 'Tasks.API1.Controllers.TasksController.GetTask (Tasks.API1)' with route pattern 'api/v1/tasks/{taskId}' is valid for the request path '/api/v1/tasks/2b1df221-6f44-4a40-8ab5-fbcb5fe95e71'
+2023-07-10 20:00:08.373 -07:00 [DBG] Request matched endpoint 'Tasks.API1.Controllers.TasksController.GetTask (Tasks.API1)'
+2023-07-10 20:00:08.375 -07:00 [INF] Executing endpoint 'Tasks.API1.Controllers.TasksController.GetTask (Tasks.API1)'
+2023-07-10 20:00:08.395 -07:00 [INF] Route matched with {action = "GetTask", controller = "Tasks"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[Tasks.API1.Models.TaskDto] GetTask(System.Guid) on controller Tasks.API1.Controllers.TasksController (Tasks.API1).
+2023-07-10 20:00:08.395 -07:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2023-07-10 20:00:08.395 -07:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2023-07-10 20:00:08.395 -07:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2023-07-10 20:00:08.395 -07:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2023-07-10 20:00:08.396 -07:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2023-07-10 20:00:08.396 -07:00 [DBG] Executing controller factory for controller Tasks.API1.Controllers.TasksController (Tasks.API1)
+2023-07-10 20:00:08.396 -07:00 [DBG] Executed controller factory for controller Tasks.API1.Controllers.TasksController (Tasks.API1)
+2023-07-10 20:00:08.399 -07:00 [DBG] Attempting to bind parameter 'taskId' of type 'System.Guid' ...
+2023-07-10 20:00:08.399 -07:00 [DBG] Attempting to bind parameter 'taskId' of type 'System.Guid' using the name 'taskId' in request data ...
+2023-07-10 20:00:08.400 -07:00 [DBG] Done attempting to bind parameter 'taskId' of type 'System.Guid'.
+2023-07-10 20:00:08.400 -07:00 [DBG] Done attempting to bind parameter 'taskId' of type 'System.Guid'.
+2023-07-10 20:00:08.400 -07:00 [DBG] Attempting to validate the bound parameter 'taskId' of type 'System.Guid' ...
+2023-07-10 20:00:08.400 -07:00 [DBG] Done attempting to validate the bound parameter 'taskId' of type 'System.Guid'.
+2023-07-10 20:00:08.457 -07:00 [FTL] Exception thrown while getting task with Id: 2b1df221-6f44-4a40-8ab5-fbcb5fe95e71
+System.Exception: new exception
+   at Tasks.API1.Controllers.TasksController.GetTask(Guid taskId) in /Users/tyagi/dev/Projects/Tasks.API1/Tasks.API1/Controllers/TasksController.cs:line 29
+2023-07-10 20:00:08.463 -07:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerOutputFormatter"]
+2023-07-10 20:00:08.464 -07:00 [DBG] No information found on request to perform content negotiation.
+2023-07-10 20:00:08.464 -07:00 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/problem+json","application/problem+xml","application/problem+json","application/problem+xml"]'.
+2023-07-10 20:00:08.465 -07:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonOutputFormatter' and content type 'application/problem+json' to write the response.
+2023-07-10 20:00:08.465 -07:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2023-07-10 20:00:08.548 -07:00 [INF] Executed action Tasks.API1.Controllers.TasksController.GetTask (Tasks.API1) in 149.3243ms
+2023-07-10 20:00:08.548 -07:00 [INF] Executed endpoint 'Tasks.API1.Controllers.TasksController.GetTask (Tasks.API1)'
+2023-07-10 20:00:08.548 -07:00 [DBG] Connection id "0HMS1NBI8GJC8" completed keep alive response.
+2023-07-10 20:00:08.548 -07:00 [INF] Request finished HTTP/1.1 GET https://localhost:7050/api/v1/tasks/2b1df221-6f44-4a40-8ab5-fbcb5fe95e71 - - - 500 200 application/problem+json;+charset=utf-8 198.4867ms
