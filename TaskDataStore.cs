@@ -7,7 +7,6 @@ namespace Tasks.API1
 	public class TaskDataStore
 	{
 		public List<TaskDto> Tasks { get; set; }
-		public static TaskDataStore Current { get; } = new TaskDataStore();
 
 		public TaskDataStore()
 		{

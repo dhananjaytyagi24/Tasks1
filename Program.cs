@@ -31,6 +31,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<TaskDataStore>();
 builder.Services.AddLogging();
+builder.Services.AddSingleton<TaskDataStore>();
 
 var app = builder.Build();
 

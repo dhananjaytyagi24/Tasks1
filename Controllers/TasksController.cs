@@ -8,41 +8,34 @@ namespace Tasks.API1.Controllers
 	[Route("api/v1/tasks")]
 	public class TasksController : ControllerBase
 	{
+		private readonly TaskDataStore _taskDataStore;
 		private readonly ILogger<TasksController> _logger;
 
-		public TasksController(ILogger<TasksController> logger)
+		public TasksController(TaskDataStore taskDataStore, ILogger<TasksController> logger)
 		{
-			_logger = logger;
+			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
+			_taskDataStore = taskDataStore ?? throw new ArgumentNullException(nameof(taskDataStore));
 		}
 
 		[HttpGet]
 		public ActionResult<IEnumerable<TaskDto>> GetTasks()
 		{
-			return Ok(TaskDataStore.Current.Tasks);
+			return Ok(_taskDataStore.Tasks);
 		}
 
 		[HttpGet("{taskId}", Name ="GetTask")]
 		public ActionResult<TaskDto> GetTask([FromRoute] Guid taskId)
 		{
-			try
-			{
-				throw new Exception("new exception");
-                var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
+            var task = _taskDataStore.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
 
-                if (task == null)
-                {
-                    _logger.LogInformation($"Task with Id: {taskId} could not be found");
-                    return NotFound($"Task with Id: {taskId} could not be found");
-                }
-
-                return Ok(task);
+            if (task == null)
+            {
+                _logger.LogInformation($"Task with Id: {taskId} could not be found");
+                return NotFound($"Task with Id: {taskId} could not be found");
             }
-			catch (Exception ex)
-			{
-				_logger.LogCritical(ex, $"Exception thrown while getting task with Id: {taskId}");
-				return StatusCode(500);
-			}
-		}
+
+            return Ok(task);
+        }
 
 		[HttpPost]
 		public IActionResult CreateTask(CreateTaskDto createTaskDto)
@@ -59,7 +52,7 @@ namespace Tasks.API1.Controllers
 			newTask.Importance = createTaskDto.Importance;
 			newTask.DaysTaken = newTask.DaysTaken;
 
-			TaskDataStore.Current.Tasks.Add(newTask);
+            _taskDataStore.Tasks.Add(newTask);
 
 			return CreatedAtRoute("GetTask", new { taskId = newTask.Id }, newTask);
 
@@ -68,7 +61,7 @@ namespace Tasks.API1.Controllers
 		[HttpPut("{taskId}")]
 		public IActionResult UpdateTask([FromRoute]Guid taskId, UpdateTaskDto updateTaskDto)
 		{
-			var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
+			var task = _taskDataStore.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
 			if (task == null)
 			{
 				return NotFound($"Task with Id: {taskId} could not be found");
@@ -85,7 +78,7 @@ namespace Tasks.API1.Controllers
 		[HttpPatch("{taskId}")]
 		public IActionResult PatchTask([FromRoute] Guid taskId, JsonPatchDocument<UpdateTaskDto> jsonPatchDocument)
 		{
-            var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
+            var task = _taskDataStore.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
             if (task == null)
             {
                 return NotFound($"Task with Id: {taskId} could not be found");
@@ -112,14 +105,14 @@ namespace Tasks.API1.Controllers
 		[HttpDelete("{taskId}")]
 		public IActionResult DeleteTask([FromRoute]Guid taskId)
 		{
-            var task = TaskDataStore.Current.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
+            var task = _taskDataStore.Tasks.Where(x => x.Id == taskId).SingleOrDefault();
 
             if (task == null)
             {
                 return NotFound($"Task with Id: {taskId} could not be found");
             }
 
-			TaskDataStore.Current.Tasks.Remove(task);
+            _taskDataStore.Tasks.Remove(task);
 
 			return NoContent();
         }
